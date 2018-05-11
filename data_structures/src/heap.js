@@ -1,43 +1,17 @@
 const heapsort = arr => {
   /* Your code here */
-  const heapsort = arr => {
-    var count = arr.length;
-    arr.unshift(null);
+    const heap = new Heap();
+    const sorted = new Array(arr.length);
 
-    for (var i = count >> 1; i > 0; i--) {
-      down(arr, i, count);
+    for (let i = 0; i < arr.length; i++) {
+      heap.insert(arr[i]);
     }
 
-    for (var i = count; i > 0; i--) {
-      let tmp = arr[i];
-      arr[i] = arr[1];
-      arr[1] = tmp;
-
-      down(arr, 1, --count);
+    for (let i = arr.length -1; i > -1; i--) {
+      sorted[i] = heap.delete();
     }
 
-    arr.shift();
-    return arr;
-  };
-
-  function down(items, parent, count) {
-    let child = parent << 1;
-    while (child <= count) {
-      if (child < count) {
-        child = items[child] > items[child + 1] ? child : child + 1;
-      }
-
-      if (items[parent] > items[child]) break;
-
-      let tmp = items[parent];
-      items[parent] = items[child];
-      items[child] = tmp;
-
-      parent = child;
-      child = parent << 1;
-    }
-  }
-};
+    return sorted;
 
 class Heap {
   constructor() {
