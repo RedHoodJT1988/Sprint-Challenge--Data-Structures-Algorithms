@@ -1,17 +1,23 @@
-const heapsort = arr => {
-  /* Your code here */
-    const heap = new Heap();
-    const sorted = new Array(arr.length);
+const heapsort = (arr) => {
+  let tmp = [];
+  let sorted = [];
+  let hpy = new Heap();
 
-    for (let i = 0; i < arr.length; i++) {
-      heap.insert(arr[i]);
-    }
+  for (let i = 0; i < arr.length; i++) {
+    hpy.insert(arr[i]);
+  }
 
-    for (let i = arr.length -1; i > -1; i--) {
-      sorted[i] = heap.delete();
-    }
+  for (let j = 0; j < arr.length; j++) {
+    tmp.push(hpy.delete());
+  }
 
-    return sorted;
+  for (let k = 0; k < arr.length; k++) {
+    sorted.push(tmp.pop());
+  }
+
+  return sorted;
+
+};
 
 class Heap {
   constructor() {
@@ -49,12 +55,8 @@ class Heap {
 
   bubbleUp(index) {
     const parent = Math.floor(index / 2);
-    const parent = Math.floor(index / 2);
     if (parent > 0 && this.storage[parent] < this.storage[index]) {
-      [this.storage[parent], this.storage[index]] = [
-        this.storage[index],
-        this.storage[parent],
-      ];
+      [this.storage[parent], this.storage[index]] = [this.storage[index], this.storage[parent]];
       this.bubbleUp(parent);
     }
   }
@@ -67,23 +69,19 @@ class Heap {
     if (this.storage[child1] !== undefined) {
       if (this.storage[child2] === undefined) {
         maxChild = child1;
-      } else if (this.storage[child2] !== undefined) {
-        maxChild =
-          this.storage[child1] > this.storage[child2] ? child1 : child2;
+      }else if (this.storage[child2] !== undefined) {
+        maxChild = this.storage[child] > this.storage[child2] ? child1 : child2;
       }
 
       if (this.storage[index] < this.storage[maxChild]) {
-        [this.storage[maxChild], this.storage[index]] = [
-          this.storage[index],
-          this.storage[maxChild],
-        ];
+        [this.storage[maxChild], this.storage[index]] = [this.storage[index], this.storage[maxChild]];
         this.siftDown(maxChild);
       }
     }
   }
 }
 
-module.exports = {
+module.export = {
   Heap,
   heapsort,
 };
