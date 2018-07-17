@@ -1,5 +1,5 @@
 const heapsort = arr => {
-  let heap = new heap();
+  let heap = new Heap();
   arr.forEach(element => heap.insert(element));
   let sorted = [];
   while (heap.size > 0) {
@@ -59,7 +59,7 @@ class Heap {
       if (this.storage[child2] === undefined) {
         maxChild = child1;
       }else if (this.storage[child2] !== undefined) {
-        maxChild = this.storage[child] > this.storage[child2] ? child1 : child2;
+        maxChild = this.storage[child1] > this.storage[child2] ? child1 : child2;
       }
 
       if (this.storage[index] < this.storage[maxChild]) {
@@ -70,7 +70,7 @@ class Heap {
   }
 }
 
-module.export = {
+module.exports = {
   Heap,
   heapsort,
 };
