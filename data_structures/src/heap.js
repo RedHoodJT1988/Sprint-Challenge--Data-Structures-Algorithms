@@ -1,22 +1,11 @@
-const heapsort = (arr) => {
-  let tmp = [];
+const heapsort = arr => {
+  let heap = new heap();
+  arr.forEach(element => heap.insert(element));
   let sorted = [];
-  let hpy = new Heap();
-
-  for (let i = 0; i < arr.length; i++) {
-    hpy.insert(arr[i]);
+  while (heap.size > 0) {
+    sorted.unshift(heap.delete());
   }
-
-  for (let j = 0; j < arr.length; j++) {
-    tmp.push(hpy.delete());
-  }
-
-  for (let k = 0; k < arr.length; k++) {
-    sorted.push(tmp.pop());
-  }
-
   return sorted;
-
 };
 
 class Heap {
